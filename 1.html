@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>esri Deom</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.16/dijit/themes/cl0aro/claro.css"/>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/css/esri.css"/>
+    <style>
+
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        #BasemapToggle {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            z-index: 50;
+        }
+
+        #HomeButton {
+            left: 25px;
+            position: absolute;
+            top: 93px;
+            z-index: 50;
+        }
+
+        #LocateButton {
+            left: 25px;
+            position: absolute;
+            top: 130px;
+            z-index: 50;
+        }
+    </style>
+    <script src="https://js.arcgis.com/3.16/init.js"></script>
+    <script>
+        var map;
+        var featureLayer;
+        //引入基础类包，具体看官方API
+        require([
+            "esri/basemaps", "esri/map", "esri/dijit/Scalebar",
+            "esri/layers/ArcGISTiledMapServiceLayer",
+            "esri/dijit/HomeButton", "esri/dijit/LocateButton", "esri/dijit/BasemapToggle", "esri/dijit/OverviewMap", "dojo/domReady"
+        ], function (esriBasemaps, Map, Scalebar, ArcGISTiledMapServiceLayer,
+                     HomeButton, LocateButton, BasemapToggle, OverviewMap) {
+            esriBasemaps.delorme = {
+                baseMapLayers: [
+                    //中国矢量地图服务
+                    { url: "http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineCommunity/MapServer" }
+                ],
+                //缩略图
+                thumbnailUrl: "Imgs/shiliang.jpg",
+                title: "矢量图"
+            };
+            //初始化地图
+            map = new Map("map", {
+                basemap: "delorme",
+                center: [114.93896484, 25.85428033],
+                zoom: 15
+            });
+            //卫星底图
+            var toggle = new BasemapToggle({
+                map: map,
+                basemap: "satellite"
+            }, "BasemapToggle");
+            toggle.startup();
+            //返回主视图
+            var home = new HomeButton({
+                map: map
+            }, "HomeButton");
+            home.startup();
+            //定位
+            geoLocate = new LocateButton({
+                map: map
+            }, "LocateButton");
+            geoLocate.startup();
+            //鹰眼
+            var overviewMapDijit = new OverviewMap({
+                map: map,
+                expandFactor: 2,
+                attachTo: "bottom-left",
+                visible: true
+            });
+            overviewMapDijit.startup();
+            //比例尺
+            var scalebar = new Scalebar({ map: map, attachTo: "bottom-left" });
+        });
+
+    </script>
+
+</head>
+<body class="claro">
+<div id="map"  data-dojo-type="dijit/layout/ContentPane"
+     data-dojo-props="region:'center'"
+     style="padding:0">
+    <!--  返回初始化地图按钮-->
+    <div id="HomeButton"></div>
+    <!--  Html5定位按钮-->
+    <div id="LocateButton"></div>
+    <!--  切换底图-->
+    <div id="BasemapToggle"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+body {
+   background: url("../images/bg.png") no-repeat;
+}
+
+#bigdatePlatform{
+
+}
+
+#bigdatePlatform .title{
+    text-align: center;
+    margin: 25px 0px 15px 0px;
+    color: deepskyblue;
+}
+#bigdatePlatform .border-line{border:1px solid #294458;border-radius:10px}
+.chartHeight{height:220px;width:100%;}
+.chartMapHeight{height:350px;width:100%;}
