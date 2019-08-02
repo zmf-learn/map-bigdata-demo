@@ -12,5 +12,7 @@ body {
     color: deepskyblue;
 }
 #bigdatePlatform .border-line{border:1px solid #294458;border-radius:10px}
-.chartHeight{height:220px;width:100%;}
+.chartHeight-min{height:230px;width:100%;}
+.chartHeight{height:270px;width:100%;}
 .chartMapHeight{height:350px;width:100%;}
+.chartMapHeight-max{height:430px;width:100%;}

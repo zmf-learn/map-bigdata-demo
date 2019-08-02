@@ -64,9 +64,11 @@ a img {
 .padding0{padding:0px;}
 .padding10{padding:10px;}
 .padding20{padding:20px;}
-.padding-right20{padding: 0px 20px 0px 20px ;}
+.padding-right20{padding: 0px 20px 0px 0px ;}
+.margin-TopBottom10{margin: 10px 0px !important;}
 .margin-TopBottom20{margin: 20px 0px !important;}
 .margin-LeftRight20{margin: 0px 20px !important;}
+.margin-LeftRight10{margin: 0px 10px !important;}
 .marginBottom{margin-bottom:20px;}
 .margin10{margin:10px;}
 .margin20{margin:20px;}

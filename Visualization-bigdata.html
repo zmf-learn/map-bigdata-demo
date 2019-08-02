@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>Title</title>
+    <title>医疗大数据可视化分析平台</title>
     <link rel="stylesheet" href="css/default.css">
      <link rel="stylesheet" href="css/style.css">
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>-->
@@ -15,7 +15,7 @@
 
 </head>
 <body id="bigdatePlatform" class="page-header-fixed">
-  <h3 class="title">可视化大数据平台</h3>
+  <h3 class="title">医疗大数据可视化分析平台</h3>
   <div class="container-fluid">
       <!--<div class="page-container">
           <div class="page-content">
@@ -23,49 +23,50 @@
           </div>
       </div>-->
       <div class="row-fluid">
-      <div class="span3">
+      <div class="span3 margin-LeftRight10">
           <div class="border-line padding10 padding-right20">
-              <div class="row-fluid margin-TopBottom20">
+              <div class="row-fluid margin-TopBottom10">
                  <!-- <div class="color-blue align-center padding10">总用户量:<span class="color-white">19,128万</span></div>-->
-                  <div class="color-blue align-center"><h4>总用户量</h4></div>
+                  <div class="color-blue align-center"><h4>数据汇总统计</h4></div>
                   <div class="span12 margin10">
                       <div class="span6 bg-blue padding10">
-                          <h5  class="color-blue align-center">总访问量:</h5>
-                          <div class="color-white  align-center">18,4万</div>
+                          <h5  class="color-blue align-center">总患者数:</h5>
+                          <div class="color-white  align-center">145万</div>
                       </div>
                       <div class="span6  bg-blue padding10">
-                          <h5 class="color-blue align-center">总访问量:</h5>
-                          <div class="color-white align-center">18,4万</div>
+                          <h5 class="color-blue align-center">总消费金额:</h5>
+                          <div class="color-white align-center">1689万</div>
                       </div>
                   </div>
                   <div class="span12 margin10">
                       <div class="span4 bg-blue padding10">
-                          <h5  class="color-blue align-center">总访问量:</h5>
-                          <div class="color-white  align-center">18,4万</div>
+                          <h5 class="color-blue align-center">投保案件数量:</h5>
+                          <div class="color-white align-center">56万</div>
                       </div>
                       <div class="span4 bg-blue padding10">
-                          <h5 class="color-blue align-center">总访问量:</h5>
-                          <div class="color-white align-center">18,4万</div>
+                          <h5  class="color-blue align-center">智能核保人数:</h5>
+                          <div class="color-white  align-center">20万</div>
                       </div>
                       <div class="span4 bg-blue padding10">
-                          <h5 class="color-blue align-center">总访问量:</h5>
-                          <div class="color-white align-center">18,4万</div>
+                          <h5 class="color-blue align-center">人工承保人数:</h5>
+                          <div class="color-white align-center">36万</div>
                       </div>
+
                   </div>
               </div>
           </div>
           <div class="border-line padding10 padding-right20 margin-TopBottom20">
-                <div class="row-fluid margin-TopBottom20">
-                    <div id="lineChartId"  class="chartHeight"></div>
+                <div class="row-fluid margin10">
+                    <div id="lineChartId"  class="chartHeight-min"></div>
               </div>
           </div>
           <div class="border-line padding10 padding-right20 margin-TopBottom20">
-              <div class="row-fluid margin-TopBottom20">
+              <div class="row-fluid margin10">
                   <div id="chart1Id"  class="chartHeight"></div>
               </div>
           </div>
       </div>
-       <div class="span5 margin-LeftRight20">
+       <div class="span5 margin-LeftRight10">
            <div class="span12 border-line marginBottom">
                <div id="chinaMapChartId"  class="chartMapHeight margin-TopBottom20"></div>
            </div>
@@ -79,21 +80,21 @@
            </div>
 
        </div>
-          <div class="span4 margin-LeftRight20">
+          <div class="span4 margin-LeftRight10">
              <!-- <div class="span12 border-line marginBottom" >
                   <div id="circleChartId" class="chartMapHeight margin-TopBottom20"></div>
               </div>-->
               <div class="span12  border-line margin0" >
                   <div class=" padding10 padding-right20 ">
                       <div class="row-fluid  ">
-                          <div id="circleChartId" class="chartMapHeight margin-TopBottom20"></div>
+                          <div id="circleChartId" class="chartMapHeight margin10"></div>
                       </div>
                   </div>
               </div>
               <div class="span12  border-line margin-TopBottom20" >
                   <div class=" padding10 padding-right20 ">
                       <div class="row-fluid  ">
-                          <div id="relationChartId" class="chartMapHeight margin-TopBottom20" style="height:400px;"></div>
+                          <div id="relationChartId" class="chartMapHeight-max margin10" ></div>
                       </div>
                   </div>
               </div>
@@ -10366,11 +10367,16 @@
             },
             baseOption: {
                 title: {
-                    text: '世界各国GDP超过一万亿美元的时间顺序',
+                    text: '中国人在世界各国就诊患者分布',
                     subtext: '',
                     left: 'center',
-                    top: 10
+                    top: 10,
+                    textStyle: {
+                        fontWeight: 'bold',              //标题颜色
+                        color: '#999',
+                    },
                 },
+
                 visualMap: {
                     max: 1E+12,
                     min:0,
@@ -10402,10 +10408,10 @@
         var cost = [0.2, 0.201, 1]//本期比上期（大于1按1处理）
         var dataCost = [1000.01,200000,200]//真是的金额
         var totalCost = [1, 1, 1]//比例综合
-        var visits = [92, 102, 89]//本期占总的百分比*100
+        var visits = [95, 102, 89]//本期占总的百分比*100
         var grade = ['人次用药金额', '药品使用量', '用药金额']
         var data = {
-            title: "**省",
+            title: "陕西省",
             grade: grade,
             cost: cost,
             totalCost: totalCost,
@@ -10534,7 +10540,18 @@
 
         var option = {
             backgroundColor: '#05274C',
-            legend: {
+            title : {
+                text: '患者年龄比例',
+                subtext: '',
+                top:'10',
+                x:'center',
+                textStyle: {
+                    align: 'center',
+                    color: '#4DCEF8',
+                    fontSize: 18
+                }
+            },
+           /* legend: {
                 itemWidth: 10, //图例的宽度
                 itemHeight: 10, //图例的高度
                 itemGap: 10,
@@ -10545,24 +10562,25 @@
                 selectedMode: false, //取消图例上的点击事件
                 // data: ["4~18岁", "18<X≤80岁", ">80岁"]
                 data: ["4~18岁", "18<X≤80岁", ">80岁"]
-            },
+            },*/
             color: ["#33C6F7", "#FFA700", "#FF9090"], //扇形区域以及列表颜色
             graphic: [{
                 type: "text",
                 left: "center",
-                top: "40%",
+                top: "60%",
                 style: {
                     fill: "#f8fffd",
-                    text: "总患者数"
+                    text: "总患者数",
+                    color:'#f8fffd'
                 }
             },
                 {
                     type: "text",
                     left: "center",
-                    top: "50%",
+                    top: "70%",
                     z: 10,
                     style: {
-                        text: "3231",
+                        text: "1450000",
                         font: "16px Microsoft YaHei bold",
                         fill: "#f8fffd",
                     }
@@ -10571,7 +10589,7 @@
             series: [{
                 type: "pie",
                 radius: ["30%", "50%"], //两个表示环：内半径,外半径
-                center: ["50%", "50%"],
+                center: ["50%", "65%"],
                 labelLine: {
                     normal: {
                         length: 15//延长线的长度
@@ -10604,16 +10622,16 @@
                 },
                 data: [
                     {
-                        value: 311,
+                        value: '80000',
                         name: "4~18岁",
                         selected:true
                     },
                     {
-                        value: 1311,
+                        value: 1000000,
                         name: "18<X≤80岁"
                     },
                     {
-                        value: 9112,
+                        value: 1500000,
                         name: ">80岁"
                     }
                 ]
@@ -10630,13 +10648,19 @@
            title:{
                text:'医院排名Top10',
                subtext: '',
-               left:'left'
+               left:'center',
+               top:'3%',
+               bottom:'5%',
+         textStyle: {
+             fontWeight: 'bold',              //标题颜色
+                 color: 'white'
+         },
            },
 
            grid: {
                left: '0%',
                right: '10%',
-               top:50,
+               top:'15%',
                bottom: '10%',
                containLabel: true,
            },
@@ -10649,7 +10673,7 @@
                }
            },
            xAxis: {
-               name:'问题数',
+               name:'排名',
                type: 'value',
                axisTick: {
                    show: true
@@ -10701,14 +10725,14 @@
                    }
 
                },
-               data: ['经营资质', '经营条件', '食品标签等外观质量状况', '食品安全管理机构和人员', '从业人员管理',
-                   '经营过程控制情况', '超市', '食用农产品批发市场', '市场开办者、柜台出租者和展销会举办者', '食品储存']
+               data: ['北京协和医院', '四川大学华西医院', '中国人民解放军总医院', '上海交通大学医学院附属瑞金医院', '空军军医大学西京医院',
+                   '复旦大学附属中山医院', '中山大学附属第一医院', '华中科技大学同济医学院附属同济医院', '复旦大学附属华山医院', '北京大学第三医院']
 
            },
 
            ],
            series: [{
-               name: '事项申请数',
+               name: '排名',
                type: 'bar',
 
                itemStyle: {
@@ -10722,7 +10746,7 @@
                },
                barGap: '0%',
                barCategoryGap: '50%',
-               data: [70,90,100,110,122,130,135,150,157,195]
+               data: [1,2,3,4,5,6,7,8,9,10]
            }]
        };
 
@@ -10749,43 +10773,43 @@
             }
             var data = [{
                 name: '海南',
-                value: 99925.73
+                value: 19992
             },
                 {
                     name: '河南',
-                    value: 17737.01
+                    value: 17737
                 },
                 {
                     name: '河北',
-                    value: 13177.64
+                    value: 13177
                 },
                 {
                     name: '湖北',
-                    value: 12174.96
+                    value: 52174
                 },
                 {
                     name: '广东',
-                    value: 8230.15
+                    value: 8230
                 },
                 {
                     name: '湖南',
-                    value: 8173.05
+                    value: 8173
                 },
                 {
                     name: '江西',
-                    value: 7423.08
+                    value: 7423
                 },
                 {
                     name: '黑龙江',
-                    value: 6829.69
+                    value: 6829
                 },
                 {
                     name: '四川',
-                    value: 6158.43
+                    value: 6158
                 },
                 {
                     name: '安徽',
-                    value: 5930.80
+                    value: 5930
                 },
             ];
             var max = 100000,
@@ -10812,8 +10836,8 @@
             var option = {
                 /*backgroundColor: '#055884',*/
                 title: {
-                    text: '购买对象所在省份TOP10',
-                    subtext: '销售面积区间',
+                    text: '患者就医所在省份TOP10',
+                    subtext: '患者就医所在医院',
                     x: 'center',
                     textStyle: {
                         color: '#ccc'
@@ -11018,359 +11042,391 @@
     function relationMap(){
 
         var myChart=echarts.init(document.getElementById('relationChartId'));
+
+        // 指定图表的配置项和数据
+        var size = 40;
+        var size1 = 10;
+        var yy = 200;
+        var yy1 = 250;
         var option = {
-            backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
-                offset: 0,
-                color: '#05274C'
-            }, {
-                offset: 1,
-                color: '#1a5284'
-            }]),
             title: {
-                text: "三国演义中人名出现次数排名",
-                subtext: "ZBH",
-                top: "top",
-                left: "center"
-            },
-            tooltip: {},
-            legend: [{
-                formatter: function(name) {
-                    return echarts.format.truncateText(name, 40, '14px Microsoft Yahei', '…');
-                },
-                tooltip: {
-                    show: true
-                },
-                selectedMode: 'false',
-                bottom: 20,
-                data: ['刘备2239', '诸葛亮1892', '曹操979', '关羽948', '张飞408', '赵云393', '孙权390', '吕布384', '周瑜328', '魏延327']
-            }],
-            toolbox: {
-                show: true,
-                feature: {
-                    dataView: {
-                        show: true,
-                        readOnly: true
-                    },
-                    restore: {
-                        show: true
-                    },
-                    saveAsImage: {
-                        show: true
-                    }
+                text: '常见疾病标准用药',
+                top: "10",
+                left: "center",
+                textStyle: {
+                    fontSize: 18,
+                    color: 'white'
                 }
             },
-            animationDuration: 3000,
+            tooltip: {
+                formatter: '{b}'
+            },
+            backgroundColor: '#0F0C29',
+            animationDuration: 1000,
             animationEasingUpdate: 'quinticInOut',
+
+            // 图底部的图示
+            // legend: [{
+            //  formatter: function(name) {
+            //      return echarts.format.truncateText(name, 40, '14px Microsoft Yahei', '…');
+            // },
+            // tooltip: {
+            //    show: true
+            // },
+            //  selectedMode: 'false',
+            //  top: 20,
+            //  right: 0,
+            //  textStyle: {
+            //      color: '#464646'
+            //   },
+            //data: ['用户体验度', '专业化咨询', '办事流程优化', '投诉建议', '其他', '监督', '特点', '专业']
+            // }],
+
             series: [{
-                name: '三国演义',
+                name: '常见疾病',
                 type: 'graph',
                 layout: 'force',
-
                 force: {
-                    repulsion: 150
+                    repulsion: 30,
+                    gravity: 0.1,
+                    edgeLength: 30,
+                    layoutAnimation: true,
                 },
+                // 名称及对应位置
                 data: [{
-                    "name": "三国演义",
-                    // "x": 0,
-                    // y: 0,
-                    "symbolSize": 80,
+                    "name": "高血压",
+                    x: 20,
+                    y: yy,
+                    "symbolSize": size,
+                    "category": "高血压",
                     "draggable": "true",
-                    "value": 27
+                    label: {
+                        normal: {
+                            position: 'inside',
+                            fontSize: 14,
+                            color: '#fff',
+                        }
+                    },
+                }, {
+                    "name": "卡托普利",
+                    x: 20,
+                    y: yy,
+                    "symbolSize": size1,
+                    "category": "高血压",
+                    "draggable": "true"
+                }, {
+                    x: 30,
+                    y: yy1,
+                    "name": "尼卡地平",
+                    "symbolSize": size1,
+                    "category": "高血压",
+                    "draggable": "true"
+                }, {
+                    x: 40,
+                    y: yy,
+                    "name": "螺内酯",
+                    "symbolSize": size1,
+                    "category": "高血压",
+                    "draggable": "true",
+                    "value": 1
+                }, {
+                    x: 50,
+                    y: yy,
+                    "name": "阿提洛尔",
+                    "symbolSize": size1,
+                    "category": "高血压",
+                    "draggable": "true",
+                    "value": 1
+                }, {
+                    x: 60,
+                    y: yy,
+                    "name": "美托洛尔",
+                    "symbolSize": size1,
+                    "category": "高血压",
+                    "draggable": "true",
+                    "value": 1
+                }, {
+                    x: 70,
+                    y: yy,
+                    "name": "氢路噻嗪",
+                    "symbolSize": size1,
+                    "category": "高血压",
+                    "draggable": "true",
+                    "value": 1
+                },
+                    {
+                        "name": "糖尿病",
+                        x: 10,
+                        y: yy,
+                        "symbolSize": size,
+                        "category": "糖尿病",
+                        "draggable": "true",
+                        label: {
+                            normal: {
+                                position: 'inside',
+                                fontSize: 14,
+                                color: '#fff',
+                            }
+                        },
+                    },{
+                    x: 80,
+                    y: yy1,
+                    "name": "阿卡波糖片",
+                    "symbolSize": size1,
+                    "category": "糖尿病",
+                    "draggable": "true"
+                }, {
+                    x: 90,
+                    y: yy,
+                    "name": "亚利列脲莫格美片",
+                    "symbolSize": size1,
+                    "category": "糖尿病",
+                    "draggable": "true"
+                }, {
+                    x: 100,
+                    y: yy1,
+                    "name": "沙格列汀片",
+                    "symbolSize": size1,
+                    "category": "糖尿病",
+                    "draggable": "true"
+                }, {
+                    x: 110,
+                    y: yy1,
+                    "name": "盐二双酸甲胍片",
+                    "symbolSize": size1,
+                    "category": "糖尿病",
+                    "draggable": "true"
+                }, {
+                    x: 150,
+                    y: yy1,
+                    "name": "高血脂",
+                    "symbolSize": size,
+                    "category": "高血脂",
+                    "draggable": "true",
+                    label: {
+                        normal: {
+                            position: 'inside',
+                            fontSize: 14,
+                            color: '#fff',
+                        }
+                    },
+                },
+                    {
+                        x: 110,
+                        y: yy1,
+                        "name": "考来烯胺",
+                        "symbolSize": size1,
+                        "category": "高血脂",
+                        "draggable": "true"
+                    },
+                    {
+                        x: 120,
+                        y: yy1,
+                        "name": "考来替泊",
+                        "symbolSize": size1,
+                        "category": "高血脂",
+                        "draggable": "true"
+                    },
+                    {
+                        x: 130,
+                        y: yy1,
+                        "name": "烟酸肌醇酯",
+                        "symbolSize": size1,
+                        "category": "高血脂",
+                        "draggable": "true"
+                    },
+                    {
+                        x: 140,
+                        y: yy1,
+                        "name": "阿西莫司",
+                        "symbolSize": size1,
+                        "category": "高血脂",
+                        "draggable": "true"
+                    },
+                    {
+                        x: 150,
+                        y: yy1,
+                        "name": "地维烯胺",
+                        "symbolSize": size1,
+                        "category": "高血脂",
+                        "draggable": "true"
+                    }
+                , {
+                    "name": "其他",
+                    x: 100,
+                    y: yy1,
+                    "symbolSize": size,
+                    "category": "其他",
+                    "draggable": "true",
+                    label: {
+                        normal: {
+                            position: 'inside',
+                            fontSize: 14,
+                            color: '#fff',
+                        }
+                    },
+
+                },{
+                        "name": "心脏病",
+                        x: 160,
+                        y: yy1,
+                        "symbolSize": size,
+                        "category": "心脏病",
+                        "draggable": "true",
+                        label: {
+                            normal: {
+                                position: 'inside',
+                                fontSize: 14,
+                                color: '#fff',
+                            }
+                        },
+
+                    }, {
+                    "name": "华法林",
+                    x: 170,
+                    y: yy1,
+                    "symbolSize": size1,
+                    "category": "心脏病",
+                    "draggable": "true"
 
                 }, {
-                    "name": "刘备2239",
-                    "value": 15,
-                    "symbolSize": 30,
-                    "category": "刘备2239",
+                    "name": "阿司匹林",
+                    x: 180,
+                    y: yy1,
+                    "symbolSize": size1,
+                    "category": "心脏病",
                     "draggable": "true"
-                }, {
-                    "name": "使君70",
-                    "symbolSize": 3,
-                    "category": "刘备2239",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "玄德1770",
-                    "symbolSize": 50,
-                    "category": "刘备2239",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "皇叔112",
-                    "symbolSize": 15,
-                    "category": "刘备2239",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "诸葛亮1892",
-                    "value": 60,
-                    "symbolSize": 50,
-                    "category": "诸葛亮1892",
-                    "draggable": "true"
-                }, {
-                    "name": "孔明1643",
-                    "symbolSize": 40,
-                    "category": "诸葛亮1892",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "卧龙35",
-                    "symbolSize": 3,
-                    "category": "诸葛亮1892",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "曹操979",
-                    "value": 5,
-                    "symbolSize": 40,
-                    "category": "曹操979",
-                    "draggable": "true"
-                }, {
-                    "name": "孟德29",
-                    "symbolSize": 3,
-                    "category": "曹操979",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "曹公44",
-                    "symbolSize": 7,
-                    "category": "曹操979",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "关羽948",
-                    "value": 40,
-                    "symbolSize": 18,
-                    "category": "关羽948",
-                    "draggable": "true"
-                }, {
-                    "name": "云长431",
-                    "symbolSize": 20,
-                    "category": "关羽948",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "关公508",
-                    "symbolSize": 25,
-                    "category": "关羽948",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "张飞408",
-                    "value": 8,
-                    "symbolSize": 25,
-                    "category": "张飞408",
-                    "draggable": "true"
-                }, {
-                    "name": "翼德55",
-                    "symbolSize": 5,
-                    "category": "张飞408",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "赵云393",
-                    "value": 5,
-                    "symbolSize": 30,
-                    "category": "赵云393",
-                    "draggable": "true"
-                }, {
-                    "name": "子龙95",
-                    "symbolSize": 7,
-                    "category": "赵云393",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "孙权390",
-                    "value": 30,
-                    "symbolSize": 30,
-                    "category": "孙权390",
-                    "draggable": "true"
-                }, {
-                    "name": "仲谋10",
-                    "symbolSize": 3,
-                    "category": "孙权390",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "吴侯72",
-                    "symbolSize": 10,
-                    "category": "孙权390",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "吕布384",
-                    "value": 20,
-                    "symbolSize": 30,
-                    "category": "吕布384",
-                    "draggable": "true"
-                }, {
-                    "name": "奉先15",
-                    "symbolSize": 3,
-                    "category": "吕布384",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "温侯12",
-                    "symbolSize": 3,
-                    "category": "吕布384",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "周瑜328",
-                    "value": 6,
-                    "symbolSize": 18,
-                    "category": "周瑜328",
-                    "draggable": "true"
-                }, {
-                    "name": "公瑾60",
-                    "symbolSize": 5,
-                    "category": "周瑜328",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "周郎35",
-                    "symbolSize": 3,
-                    "category": "周瑜328",
-                    "draggable": "true",
-                    "value": 1
-                }, {
-                    "name": "魏延327",
-                    "value": 6,
-                    "symbolSize": 18,
-                    "category": "魏延327",
-                    "draggable": "true"
-                }, {
-                    "name": "文长12",
-                    "symbolSize": 3,
-                    "category": "魏延327",
-                    "draggable": "true",
-                    "value": 1
 
-                }],
+                }, {
+                    "name": "阿尔马尔",
+                    x: 190,
+                    y: yy1,
+                    "symbolSize": size1,
+                    "category": "心脏病",
+                    "draggable": "true"
+
+                }, {
+                    "name": "氨力农",
+                    x: 200,
+                    y: yy1,
+                    "symbolSize": size1,
+                    "category": "心脏病",
+                    "draggable": "true"
+
+                }, {
+                    "name": "盐酸多巴",
+                    x: 210,
+                    y: yy1,
+                    "symbolSize": size1,
+                    "category": "心脏病",
+                    "draggable": "true"
+
+                }, {
+                    x: 220,
+                    y: yy1,
+                    "name": "络活喜",
+                    "symbolSize": size1,
+                    "category": "心脏病",
+                    "draggable": "true"
+                }, ],
+                // 对应关系
                 links: [{
-                    "source": "三国演义",
-                    "target": "刘备2239"
+                    "source": "高血压",
+                    "target": "卡托普利"
                 }, {
-                    "source": "刘备2239",
-                    "target": "使君70"
+                    "source": "高血压",
+                    "target": "尼卡地平"
                 }, {
-                    "source": "刘备2239",
-                    "target": "玄德1770"
+                    "source": "高血压",
+                    "target": "螺内酯"
                 }, {
-                    "source": "刘备2239",
-                    "target": "皇叔112"
+                    "source": "高血压",
+                    "target": "阿提洛尔"
                 }, {
-                    "source": "三国演义",
-                    "target": "诸葛亮1892"
+                    "source": "高血压",
+                    "target": "阿米洛利"
                 }, {
-                    "source": "诸葛亮1892",
-                    "target": "孔明1643"
+                    "source": "高血压",
+                    "target": "美托洛尔"
                 }, {
-                    "source": "诸葛亮1892",
-                    "target": "卧龙40"
+                    "source": "高血压",
+                    "target": "氢路噻嗪"
+                } , {
+                    "source": "糖尿病",
+                    "target": "阿卡波糖片"
                 }, {
-                    "source": "三国演义",
-                    "target": "曹操979"
+                    "source": "糖尿病",
+                    "target": "亚利列脲莫格美片"
                 }, {
-                    "source": "曹操979",
-                    "target": "孟德29"
+                    "source": "糖尿病",
+                    "target": "沙格列汀片"
                 }, {
-                    "source": "曹操979",
-                    "target": "曹公44"
+                    "source": "糖尿病",
+                    "target": "盐二双酸甲胍片"
                 }, {
-                    "source": "三国演义",
-                    "target": "关羽948"
+                    "source": "高血脂",
+                    "target": "考来烯胺"
                 }, {
-                    "source": "关羽948",
-                    "target": "云长431"
+                    "source": "高血脂",
+                    "target": "考来替泊"
                 }, {
-                    "source": "关羽948",
-                    "target": "关公508"
+                    "source": "高血脂",
+                    "target": "烟酸肌醇酯"
                 }, {
-                    "source": "三国演义",
-                    "target": "张飞408"
+                    "source": "高血脂",
+                    "target": "阿西莫司"
                 }, {
-                    "source": "张飞408",
-                    "target": "翼德55"
+                    "source": "高血脂",
+                    "target": "地维烯胺"
                 }, {
-                    "source": "三国演义",
-                    "target": "赵云393"
+                    "source": "其他",
+                    "target": "其他"
                 }, {
-                    "source": "赵云393",
-                    "target": "子龙95"
+                    "source": "心脏病",
+                    "target": "华法林"
                 }, {
-                    "source": "三国演义",
-                    "target": "孙权390"
+                    "source": "心脏病",
+                    "target": "阿司匹林"
                 }, {
-                    "source": "孙权390",
-                    "target": "仲谋10"
+                    "source": "心脏病",
+                    "target": "阿尔马尔"
                 }, {
-                    "source": "孙权390",
-                    "target": "吴侯72"
+                    "source": "心脏病",
+                    "target": "氨力农"
                 }, {
-                    "source": "三国演义",
-                    "target": "吕布384"
+                    "source": "心脏病",
+                    "target": "盐酸多巴"
                 }, {
-                    "source": "吕布384",
-                    "target": "奉先15"
-                }, {
-                    "source": "吕布384",
-                    "target": "温侯12"
-                }, {
-                    "source": "三国演义",
-                    "target": "周瑜328"
-                }, {
-                    "source": "周瑜328",
-                    "target": "公瑾60"
-                }, {
-                    "source": "周瑜328",
-                    "target": "周郎35"
-                }, {
-                    "source": "三国演义",
-                    "target": "魏延327"
-                }, {
-                    "source": "魏延327",
-                    "target": "文长12"
-                }, {
-                    "source": "三国演义",
-                    "target": "法学院"
-
+                    "source": "心脏病",
+                    "target": "络活喜"
                 }],
+                // 大的节点名称
                 categories: [{
-                    'name': '刘备2239'
+                    'name': '高血压'
                 }, {
-                    'name': '诸葛亮1892'
+                    'name': '高血糖'
                 }, {
-                    'name': '曹操979'
+                    'name': '高血脂'
                 }, {
-                    'name': '关羽948'
-                }, {
-                    'name': '张飞408'
-                }, {
-                    'name': '赵云393'
-                }, {
-                    'name': '孙权390'
-                }, {
-                    'name': '吕布384'
-                }, {
-                    'name': '周瑜328'
-                }, {
-                    'name': '魏延327'
-                }, {
-
+                    'name': '心脏病'
+                },{
+                    'name': '其他'
                 }],
                 focusNodeAdjacency: true,
                 roam: true,
                 label: {
                     normal: {
-
                         show: true,
+                        color: 'source',
+                        formatter: '{b}',
+                        fontSize: 13,
+                        fontStyle: '600',
                         position: 'top',
-
                     }
                 },
                 lineStyle: {
                     normal: {
+                        width: 3.5,
                         color: 'source',
                         curveness: 0,
                         type: "solid"
